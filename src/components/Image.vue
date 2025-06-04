@@ -1,14 +1,42 @@
 <template>
   <span v-if="typeof img === 'object'">
     <template v-if="!preview">
-      <img :src="img?.mobile" alt="" class="d-md-none" />
-      <img :src="img?.tablet" alt="" class="d-none d-md-inline d-lg-none" />
-      <img :src="img?.desktop" alt="" class="d-none d-lg-inline" />
+      <v-img
+        :src="img.mobile"
+        alt="Imagen móvil"
+        class="d-md-none"
+        :width="width"
+        :height="height"
+        cover
+      />
+      <v-img
+        :src="img.tablet"
+        alt="Imagen tablet"
+        class="d-none d-md-inline d-lg-none"
+        :width="width"
+        :height="height"
+        cover
+      />
+      <v-img
+        :src="img.desktop"
+        alt="Imagen escritorio"
+        class="d-none d-lg-inline"
+        :width="width"
+        :height="height"
+        cover
+      />
     </template>
-    <img v-else :src="img?.thumbnail" alt="thumbnail" class="" />
+    <v-img
+      v-else
+      :src="img.thumbnail"
+      alt="Miniatura"
+      :width="width"
+      :height="height"
+      cover
+    />
   </span>
 
-  <img v-else :src="img" alt="image" />
+  <v-img v-else :src="img" alt="Imagen" :width="width" :height="height" cover />
 </template>
 
 <script setup>
@@ -21,14 +49,11 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  width: {
+    type: [String, Number],
+  },
+  height: {
+    type: [String, Number],
+  },
 });
-
-const { img, preview } = props;
 </script>
-
-<style scoped>
-img{
-  object-fit: contain;
-  height: 100px;
-}
-</style>
