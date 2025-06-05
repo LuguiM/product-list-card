@@ -4,7 +4,7 @@
       <v-img
         :src="img.mobile"
         alt="Imagen móvil"
-        class="d-md-none"
+        class="d-md-none rounded-lg"
         :width="width"
         :height="height"
         cover
@@ -12,7 +12,7 @@
       <v-img
         :src="img.tablet"
         alt="Imagen tablet"
-        class="d-none d-md-inline d-lg-none"
+        class="d-none d-md-flex d-lg-none rounded-lg"
         :width="width"
         :height="height"
         cover
@@ -20,7 +20,7 @@
       <v-img
         :src="img.desktop"
         alt="Imagen escritorio"
-        class="d-none d-lg-inline"
+        class="d-none d-lg-flex rounded-lg"
         :width="width"
         :height="height"
         cover
@@ -33,10 +33,19 @@
       :width="width"
       :height="height"
       cover
+      class="rounded-lg"
     />
   </span>
 
-  <v-img v-else :src="img" alt="Imagen" :width="width" :height="height" cover />
+  <v-img
+    v-else
+    :src="img"
+    alt="Imagen"
+    :width="width"
+    :height="height"
+    cover
+    class="rounded-lg"
+  />
 </template>
 
 <script setup>
