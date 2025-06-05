@@ -39,7 +39,19 @@ export default function useDesserts() {
   }
 
   const deleteUnitDessert = (name) => {
+    const exists = cart.value.some(dessert => dessert.name === name)
 
+    if (exists) {
+      const newCart = cart.value.map(dessert => {
+        if (dessert.name === name) {
+          return { ...dessert, unit: dessert.unit - 1 }
+        }
+        return { ...dessert }
+      })
+
+      cart.value = newCart
+    }
+    updatedCart()
   }
 
   const deleteDessert = (name) => {
@@ -63,5 +75,6 @@ export default function useDesserts() {
     addDessert,
     deleteDessert,
     getUnitFromCart,
+    deleteUnitDessert
   }
 }

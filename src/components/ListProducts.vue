@@ -5,7 +5,7 @@
         :key="dessert.name"
         :product="dessert"
         :add-product="() => addProduct(dessert)"
-        :delete-product="() => deleteProduct(dessert.name)"
+        :delete-product="() => deleteUnitDessert(dessert.name)"
       />
     </v-col>
   </v-row>
@@ -15,7 +15,7 @@
 import useDesserts from "@/helpers/useDesserts.js";
 import CardProduct from "./CardProduct.vue";
 
-const { desserts, addDessert, deleteDessert } = useDesserts();
+const { desserts, addDessert, deleteDessert, deleteUnitDessert } = useDesserts();
 
 const addProduct = (item) => {
   addDessert(item);
