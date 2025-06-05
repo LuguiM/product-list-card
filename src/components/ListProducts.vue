@@ -1,15 +1,27 @@
 <template>
   <v-row>
-    <v-col cols="12" md="4" v-for="dessert in desserts">
-      <!-- {{ dessert }} -->
-      <Image :img="dessert.image" />
+    <v-col cols="12" sm="6" lg="4" v-for="dessert in desserts">
+      <CardProduct
+        :key="dessert.name"
+        :product="dessert"
+        :add-product="() => addProduct(dessert)"
+        :delete-product="() => deleteProduct(dessert.name)"
+      />
     </v-col>
   </v-row>
 </template>
 
 <script setup>
 import useDesserts from "@/helpers/useDesserts.js";
-import Image from "./Image.vue";
+import CardProduct from "./CardProduct.vue";
 
-const { desserts } = useDesserts();
+const { desserts, addDessert, deleteDessert } = useDesserts();
+
+const addProduct = (item) => {
+  addDessert(item);
+};
+
+const deleteProduct = (name) => {
+  deleteDessert(name);
+};
 </script>
