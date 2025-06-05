@@ -4,6 +4,7 @@ import { ref, onMounted } from 'vue'
 export default function useDesserts() {
   const desserts = ref(data)
   const cart = ref([])
+  const unitProduct = ref(0);
 
   const getCart = () => {
     cart.value = JSON.parse(localStorage.getItem('cart')) || []
@@ -26,7 +27,7 @@ export default function useDesserts() {
         if (dessert.name === infoDessert.name) {
           return { ...dessert, unit: dessert.unit + 1 }
         }
-        return {...dessert}
+        return { ...dessert }
       })
 
       cart.value = newCart
@@ -37,9 +38,19 @@ export default function useDesserts() {
     updatedCart()
   }
 
+  const deleteUnitDessert = (name) => {
+
+  }
+
   const deleteDessert = (name) => {
     cart.value = cart.value.filter(dessert => dessert.name !== name)
     updatedCart()
+  }
+
+  const getUnitFromCart = (name) => {
+    const foundItem = cart.value.find(item => item.name === name);
+    unitProduct.value = foundItem ? foundItem.unit : 0
+    return unitProduct.value
   }
 
   onMounted(() => {
@@ -51,5 +62,6 @@ export default function useDesserts() {
     cart,
     addDessert,
     deleteDessert,
+    getUnitFromCart,
   }
 }
