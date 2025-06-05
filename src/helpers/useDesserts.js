@@ -2,50 +2,45 @@ import data from '../../data.json'
 import { ref, onMounted } from 'vue'
 
 export default function useDesserts() {
-
-  const desserts = ref(data);
+  const desserts = ref(data)
   const cart = ref([])
-
 
   const getCart = () => {
     cart.value = JSON.parse(localStorage.getItem('cart')) || []
   }
 
   const updatedCart = () => {
-    localStorage.setItem('cart', JSON.stringify(cart.value));
+    localStorage.setItem('cart', JSON.stringify(cart.value))
   }
 
   const addDessert = (item) => {
     const infoDessert = {
       ...item,
-      unit: 1
+      unit: 1,
     }
 
-    const exits = cart.some(dessert => dessert.name === infoDessert.name)
+    const exists = cart.value.some(dessert => dessert.name === infoDessert.name)
 
-    if (exits) {
-      const newDessert = cart.map(dessert => {
+    if (exists) {
+      const newCart = cart.value.map(dessert => {
         if (dessert.name === infoDessert.name) {
-          dessert.unit++;
-          return dessert;
-        } else {
-          return dessert;
+          return { ...dessert, unit: dessert.unit + 1 }
         }
-      });
+        return {...dessert}
+      })
 
-      cart.value = [...newDessert];
+      cart.value = newCart
     } else {
-      cart.value = [...cart.value, ...infoDessert]
+      cart.value = [...cart.value, infoDessert]
     }
+
     updatedCart()
   }
 
   const deleteDessert = (name) => {
-    cart.value = cart.filter(dessert => dessert.name !== name)
+    cart.value = cart.value.filter(dessert => dessert.name !== name)
     updatedCart()
   }
-
-
 
   onMounted(() => {
     getCart()
@@ -57,5 +52,4 @@ export default function useDesserts() {
     addDessert,
     deleteDessert,
   }
-
 }
