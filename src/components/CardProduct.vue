@@ -46,7 +46,7 @@ const unit = computed(() => getUnitFromCart(props.product.name));
 const active = ref(false);
 
 watch(unit, (newVal) => {
-  active.value = newVal < 0;
+  active.value = newVal > 0;
 }, {immediate: true});
 </script>
 

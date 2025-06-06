@@ -39,20 +39,23 @@ export default function useDesserts() {
   }
 
   const deleteUnitDessert = (name) => {
-    const exists = cart.value.some(dessert => dessert.name === name)
+    const newCart = cart.value.reduce((acc, dessert) => {
+      if (dessert.name === name) {
+        const newUnit = dessert.unit - 1;
 
-    if (exists) {
-      const newCart = cart.value.map(dessert => {
-        if (dessert.name === name) {
-          return { ...dessert, unit: dessert.unit - 1 }
+        if (newUnit > 0) {
+          acc.push({ ...dessert, unit: newUnit });
         }
-        return { ...dessert }
-      })
+      } else {
+        acc.push({ ...dessert });
+      }
+      return acc;
+    }, []);
 
-      cart.value = newCart
-    }
-    updatedCart()
-  }
+    cart.value = newCart;
+    updatedCart();
+  };
+
 
   const deleteDessert = (name) => {
     cart.value = cart.value.filter(dessert => dessert.name !== name)
