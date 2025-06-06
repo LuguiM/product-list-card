@@ -6,7 +6,7 @@
     position="sticky"
   >
     <v-card-title class="text-red font-weight-bold"
-      >Your Cart ({{ totalUnits }})</v-card-title
+      >Your Cart ({{ desssertStore.totalUnits }})</v-card-title
     >
 
     <div
@@ -36,10 +36,6 @@ const desssertStore = useDessert();
 const { cart } = storeToRefs(desssertStore);
 
 const cartItem = ref(cart);
-
-const totalUnits = computed(() =>
-  cart.value.reduce((sum, item) => sum + item.unit, 0)
-);
 
 watch(
   () => cart,

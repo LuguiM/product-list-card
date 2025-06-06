@@ -6,6 +6,10 @@ export const useDessert = defineStore('dessert', () => {
   const desserts = ref(data)
   const cart = ref([])
 
+  const totalUnits = computed(() =>
+    cart.value.reduce((sum, item) => sum + item.unit, 0)
+  );
+
   const getCart = () => {
     cart.value = JSON.parse(localStorage.getItem('cart')) || []
   }
@@ -85,12 +89,15 @@ export const useDessert = defineStore('dessert', () => {
     }
   }
 
+
+
   // Cargar carrito desde localStorage al inicializar el store
   getCart()
 
   return {
     desserts,
     cart,
+    totalUnits,
     addDessert,
     deleteDessert,
     getUnitFromCart,
