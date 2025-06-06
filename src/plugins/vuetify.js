@@ -19,6 +19,7 @@ export default createVuetify({
       customTheme: {
         dark: false,
         colors: {
+          background: "#f4edeb",
           red: '#c73a0f',
           green: '#1ea475',
           'rose-50': '#fcf9f7',
