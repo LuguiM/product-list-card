@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-space-between text-rose-900">
+  <div class="d-flex justify-space-between text-rose-900 py-3 border-b">
     <div>
       {{ item.name }}
       <div class="d-flex ga-3 text-caption">

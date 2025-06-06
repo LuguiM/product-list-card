@@ -10,6 +10,12 @@ export const useDessert = defineStore('dessert', () => {
     cart.value.reduce((sum, item) => sum + item.unit, 0)
   );
 
+  const cartTotal = computed(() => {
+    return cart.value.reduce((sum, item) => {
+      return sum + (item.price * item.unit)
+    }, 0)
+  })
+
   const getCart = () => {
     cart.value = JSON.parse(localStorage.getItem('cart')) || []
   }
@@ -98,6 +104,7 @@ export const useDessert = defineStore('dessert', () => {
     desserts,
     cart,
     totalUnits,
+    cartTotal,
     addDessert,
     deleteDessert,
     getUnitFromCart,
