@@ -68,6 +68,17 @@ export default function useDesserts() {
     return unitProduct.value
   }
 
+  const getTotalForProduct = (name) => {
+    const product = cart.value.find(desserts => desserts.name === name);
+    const totalPrice = product.price * product.unit
+    
+    return {
+      selectedUnit: product.unit,
+      productPrice: product.price,
+      totalPrice
+    }
+  }
+
   onMounted(() => {
     getCart()
   })
@@ -78,6 +89,7 @@ export default function useDesserts() {
     addDessert,
     deleteDessert,
     getUnitFromCart,
-    deleteUnitDessert
+    deleteUnitDessert,
+    getTotalForProduct
   }
 }
