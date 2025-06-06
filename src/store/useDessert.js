@@ -1,10 +1,10 @@
+import { defineStore } from "pinia";
+import { ref, computed } from "vue";
 import data from '../../data.json'
-import { ref, onMounted } from 'vue'
 
-export default function useDesserts() {
+export const useDessert = defineStore('dessert', () => {
   const desserts = ref(data)
   const cart = ref([])
-  const unitProduct = ref(0);
 
   const getCart = () => {
     cart.value = JSON.parse(localStorage.getItem('cart')) || []
@@ -27,7 +27,7 @@ export default function useDesserts() {
         if (dessert.name === infoDessert.name) {
           return { ...dessert, unit: dessert.unit + 1 }
         }
-        return { ...dessert }
+        return dessert
       })
 
       cart.value = newCart
@@ -41,63 +41,52 @@ export default function useDesserts() {
   const deleteUnitDessert = (name) => {
     const newCart = cart.value.reduce((acc, dessert) => {
       if (dessert.name === name) {
-        const newUnit = dessert.unit - 1;
-
+        const newUnit = dessert.unit - 1
         if (newUnit > 0) {
-          acc.push({ ...dessert, unit: newUnit });
+          acc.push({ ...dessert, unit: newUnit })
         }
       } else {
-        acc.push({ ...dessert });
+        acc.push(dessert)
       }
-      return acc;
-    }, []);
+      return acc
+    }, [])
 
-    cart.value = newCart;
-    updatedCart();
-  };
-
+    cart.value = newCart
+    updatedCart()
+  }
 
   const deleteDessert = (name) => {
     cart.value = cart.value.filter(dessert => dessert.name !== name)
     updatedCart()
   }
 
-  // const getUnitFromCart = (name) => {
-  //   const foundItem = cart.value.find(item => item.name === name);
-  //   unitProduct.value = foundItem ? foundItem.unit : 0
-  //   return unitProduct.value
-  // }
-
   const getUnitFromCart = (name) => {
     const item = cart.value.find(product => product.name === name)
     return item ? item.unit : 0
   }
 
-
   const getTotalForProduct = (name) => {
-    const product = cart.value.find(dessert => dessert.name === name);
+    const product = cart.value.find(dessert => dessert.name === name)
     if (!product) {
       return {
         name,
         selectedUnit: 0,
         productPrice: 0,
-        totalPrice: 0
-      };
+        totalPrice: 0,
+      }
     }
-    const totalPrice = product.price * product.unit;
+    const totalPrice = product.price * product.unit
 
     return {
       name: product.name,
       selectedUnit: product.unit,
       productPrice: product.price,
-      totalPrice
-    };
-  };
+      totalPrice,
+    }
+  }
 
-
-  onMounted(() => {
-    getCart()
-  })
+  // Cargar carrito desde localStorage al inicializar el store
+  getCart()
 
   return {
     desserts,
@@ -106,6 +95,6 @@ export default function useDesserts() {
     deleteDessert,
     getUnitFromCart,
     deleteUnitDessert,
-    getTotalForProduct
+    getTotalForProduct,
   }
-}
+})

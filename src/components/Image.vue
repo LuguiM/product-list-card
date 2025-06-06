@@ -7,7 +7,7 @@
         class="d-md-none rounded-lg"
         :width="width"
         :height="height"
-        cover
+        :cover="cover"
       />
       <v-img
         :src="img.tablet"
@@ -15,7 +15,7 @@
         class="d-none d-md-flex d-lg-none rounded-lg"
         :width="width"
         :height="height"
-        cover
+        :cover="cover"
       />
       <v-img
         :src="img.desktop"
@@ -23,7 +23,7 @@
         class="d-none d-lg-flex rounded-lg"
         :width="width"
         :height="height"
-        cover
+        :cover="cover"
       />
     </template>
     <v-img
@@ -32,7 +32,7 @@
       alt="Miniatura"
       :width="width"
       :height="height"
-      cover
+      :cover="cover"
       class="rounded-lg"
     />
   </span>
@@ -43,7 +43,7 @@
     alt="Imagen"
     :width="width"
     :height="height"
-    cover
+    :cover="cover"
     class="rounded-lg"
   />
 </template>
@@ -64,5 +64,9 @@ const props = defineProps({
   height: {
     type: [String, Number],
   },
+  cover: {
+    type: Boolean,
+    default: true
+  }
 });
 </script>

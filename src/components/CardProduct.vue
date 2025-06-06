@@ -30,7 +30,7 @@
 import { ref, watch, computed } from "vue";
 import AddCardBtn from "./AddCardBtn.vue";
 import Image from "./Image.vue";
-import useDesserts from "@/helpers/useDesserts.js";
+import { useDessert } from "@/store/useDessert";
 
 const props = defineProps({
   product: {
@@ -39,10 +39,9 @@ const props = defineProps({
   addProduct: Function,
   deleteProduct: Function,
 });
+const desssertStore = useDessert();
 
-const { getUnitFromCart } = useDesserts();
-
-const unit = computed(() => getUnitFromCart(props.product.name));
+const unit = computed(() => desssertStore.getUnitFromCart(props.product.name));
 const active = ref(false);
 
 watch(unit, (newVal) => {
