@@ -78,6 +78,7 @@ const deleteProduct = () => {
 const activeShop = () => {
   shopProduct.value = true;
   emit("update:shopActive", shopProduct.value);
+  addProduct()
 };
 
 watch(
