@@ -20,6 +20,11 @@ export const useDessert = defineStore('dessert', () => {
     cart.value = JSON.parse(localStorage.getItem('cart')) || []
   }
 
+  const clearCart = () => {
+    cart.value = []
+    updatedCart()
+  }
+
   const updatedCart = () => {
     localStorage.setItem('cart', JSON.stringify(cart.value))
   }
@@ -79,6 +84,7 @@ export const useDessert = defineStore('dessert', () => {
     const product = cart.value.find(dessert => dessert.name === name)
     if (!product) {
       return {
+        image: [],
         name,
         selectedUnit: 0,
         productPrice: 0,
@@ -88,14 +94,13 @@ export const useDessert = defineStore('dessert', () => {
     const totalPrice = product.price * product.unit
 
     return {
+      image: product.image,
       name: product.name,
       selectedUnit: product.unit,
       productPrice: product.price,
       totalPrice,
     }
   }
-
-
 
   // Cargar carrito desde localStorage al inicializar el store
   getCart()
@@ -110,5 +115,6 @@ export const useDessert = defineStore('dessert', () => {
     getUnitFromCart,
     deleteUnitDessert,
     getTotalForProduct,
+    clearCart,
   }
 })
