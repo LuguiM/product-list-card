@@ -13,7 +13,7 @@
       v-if="cart.length === 0"
       class="d-flex flex-column justify-center align-center"
     >
-      <Image img="/assets/images/illustration-empty-cart.svg" width="120" />
+      <Image img="./assets/images/illustration-empty-cart.svg" width="120" />
       <p class="text-rose-500 font-weight-bold text-caption">
         Your added itmes will appear here
       </p>
@@ -30,7 +30,7 @@
 
       <v-sheet color="rose-100" rounded="lg" class="pa-5 d-flex align-center justify-center ga-3">
         <div>
-          <Image img="/assets/images/icon-carbon-neutral.svg" width="25" height="25" :cover="false" />
+          <Image img="./assets/images/icon-carbon-neutral.svg" width="25" height="25" :cover="false" />
         </div>
        <p class="text-rose-900 text-caption">This is a <span class="font-weight-bold">carbon-neutral</span> delivery</p>
       </v-sheet>
