@@ -4,6 +4,18 @@
     font-style: normal;
 }
 
+:root {
+    --red: #c73a0f;
+    --green: #1ea475;
+
+    --rose-50: #fcf9f7;
+    --rose-100: #f4edeb;
+    --rose-300: #c9aea6;
+    --rose-400: #ad8985;
+    --rose-500: #87635a;
+    --rose-900: #260f08;
+}
+
 body {
     font-family: 'RedHatText', sans-serif !important;
     background: #f4edeb !important;

@@ -3,7 +3,7 @@
     v-if="!shopProduct"
     variant="outlined"
     rounded="xl"
-    class="bg-rose-50 text-caption text-capitalize border-sm border-red border-opacity-100"
+    class="btn-addCart bg-rose-50 text-caption text-capitalize border-sm border-red border-opacity-100"
     @click="activeShop"
   >
     <img src="/assets/images/icon-add-to-cart.svg" alt="add cart" />
@@ -102,3 +102,9 @@ watch(unit, (newVal) => {
   }
 });
 </script>
+
+<style scoped>
+.btn-addCart:hover {
+  color: var(--red) !important;
+}
+</style>
