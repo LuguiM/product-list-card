@@ -34,6 +34,8 @@
         </div>
        <p class="text-rose-900 text-caption">This is a <span class="font-weight-bold">carbon-neutral</span> delivery</p>
       </v-sheet>
+
+      <ConfirmOrder />
     </div>
   </v-card>
 </template>
@@ -44,6 +46,7 @@ import CartItem from "./CartItem.vue";
 import Image from "./Image.vue";
 import { useDessert } from "@/store/useDessert";
 import { storeToRefs } from "pinia";
+import ConfirmOrder from "./ConfirmOrder.vue";
 
 const desssertStore = useDessert();
 const { cart } = storeToRefs(desssertStore);
